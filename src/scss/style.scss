@@ -1,0 +1,11 @@
+//FONTS
+//@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200");
+
+@import "settings/settings",
+"settings/color",
+"settings/base",
+//vendors
+"vendors/angular-animate",
+"vendors/animations",
+//pages
+"pages/general";

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang=pt-br>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Orçamento Virtual - OGAITI</title>
+
+	<!--SEO-->
+	<link rel="canonical" href="http://orcamento.ogaiti.com.br/"/>
+	<meta name="author" content="Tiago Rodrigo Calógero"/>
+	<meta name="robots" content="INDEX, FOLLOW"/>
+	<meta name="description" content="Online Resume Tiago Rodrigo Calógero"/>
+	<meta name="keywords" content="curriculo,resume,fullstack,frontend,backend,css,html,php,online,site,website,sistema,app,android,game"/>
+
+	<meta property="og:url" content="http://orcamento.ogaiti.com.br/"/>
+	<meta property="og:image" content="http://orcamento.ogaiti.com.br/assets/images/favicon.png"/>
+	<meta property="og:image:url" content="http://orcamento.ogaiti.com.br/assets/images/favicon.png"/>
+	<meta property="og:locale" content="pt_BR"/>
+	<meta property="og:title" content="TIAGO CALÓGERO"/>
+	<meta property="og:description" content="Online Resume Tiago Rodrigo Calógero"/>
+	<meta property="og:site_name" content="OGAITI"/>
+	<meta property="og:type" content="website"/>
+
+	<!--favicon-->
+	<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+	<link rel=stylesheet type=text/css href="assets/css/style.min.css">
+</head>
+
+<body data-ng-controller="HomeController">
+	<md-toolbar md-scroll-shrink="">
+		<div class=md-toolbar-tools>
+			<!--h3>
+				<a href="http://www.ogaiti.com.br" id="logo" class="blank"></a>
+			</h3-->
+			<div class=container>
+				<div class="col-md-2 col-xs-6"><h3>TOTAL</h3></div>
+				<div class="col-md-4 col-xs-6"><h3><span>R$ {{valorTotal}},00</span></h3></div>
+				<div class="col-md-3 col-xs-6 text-right"><h3>Previsão de entrega:</h3></div>
+				<div class="col-md-3 col-xs-6 text-right"><h3 id=dias>0 dia(s)</h3></div>
+			</div>
+		</div>
+	</md-toolbar>
+	<div class=container>
+		<!--nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-1 col-xs-6"><h3>TOTAL</h3></div>
+					<div class="col-md-5 col-xs-6"><h3><input type="text" id="total" value="R$ {{valorTotal}},00" disabled/>
+					</h3></div>
+					<div class="col-md-3 col-xs-6"><h3>Previsão de entrega: </h3></div>
+					<div class="col-md-3 col-xs-6"><h3 id="dias">0 dia(s)</h3></div>
+				</div>
+			</div>
+		</nav-->
+		<form method=post>
+			<div class="alert alert-info fade in">
+				<button type=button class=close data-dismiss=alert aria-hidden=true>&times;</button>
+				Caso selecione pagina dinamica, o mesmo irá acompanhado de um painel de gerenciamento (CMS)
+			</div>
+			<h2>Orçamento Virtual</h2>
+			<hr>
+			<fieldset>
+				<legend>Serviços</legend>
+				<div class=row>
+					<div class="col-md-6 col-xs-6">Site</div>
+					<div class="col-md-6 col-xs-6">
+						<md-radio-group data-ng-model=valores.porteEmpresa>
+							<md-radio-button value=0>Pessoal</md-radio-button>
+							<md-radio-button value=300>MEI</md-radio-button>
+							<md-radio-button value=1500>ME</md-radio-button>
+							<md-radio-button value=3500>LTDA</md-radio-button>
+						</md-radio-group>
+					</div>
+				</div>
+			</fieldset>
+			<hr>
+			<fieldset data-ng-show=valores.porteEmpresa>
+				<legend>Site</legend>
+				<div class=row>
+					<div class="col-md-6 col-xs-6">Tipo de Site</div>
+					<div class="col-md-6 col-xs-6">
+						<md-radio-group data-ng-model=tipo>
+							<md-radio-button value=template>Criar site utilizando template</md-radio-button>
+							<md-radio-button value=personalizado>Criar site personalizado</md-radio-button>
+						</md-radio-group>
+					</div>
+				</div>
+				<div data-ng-show="tipo=='personalizado'">
+					<div class=row>
+						<div class="col-md-6 col-xs-6">Pagina Inicial</div>
+						<div class="col-md-6 col-xs-6">
+							<md-radio-group data-ng-model=valores.paginaInicial>
+								<md-radio-button value=200>Estatico</md-radio-button>
+								<md-radio-button value=500>Dinamico</md-radio-button>
+							</md-radio-group>
+						</div>
+					</div>
+					<div class=row>
+						<div class="col-md-6 col-xs-6">Quem Somos</div>
+						<div class="col-md-6 col-xs-6">
+							<md-radio-group data-ng-model=valores.quemSomos>
+								<md-radio-button value=200>Estatico</md-radio-button>
+								<md-radio-button value=500>Dinamico</md-radio-button>
+							</md-radio-group>
+						</div>
+					</div>
+					<div class=row>
+						<div class="col-md-6 col-xs-6">Contato</div>
+						<div class="col-md-6 col-xs-6">
+							<md-radio-group data-ng-model=valores.contato>
+								<md-radio-button value=200>Estatico</md-radio-button>
+								<md-radio-button value=500>Dinamico</md-radio-button>
+							</md-radio-group>
+						</div>
+					</div>
+					<hr>
+					<div class=row>
+						<div class="col-md-6 col-xs-6">Outras Paginas</div>
+						<div class="col-md-6 col-xs-6">
+							<md-radio-group data-ng-model=outras.valor>
+								<md-radio-button value=300>Estatico</md-radio-button>
+								<md-radio-button value=700>Dinamico</md-radio-button>
+							</md-radio-group>
+						</div>
+						<div class="col-md-6 col-xs-6" data-ng-show=outras.valor>Quantidade</div>
+						<div class="col-md-6 col-xs-6" data-ng-show=outras.valor>
+							<md-radio-group data-ng-model=outras.qtd>
+								<md-radio-button value=1>1</md-radio-button>
+								<md-radio-button value=2>2</md-radio-button>
+								<md-radio-button value=3>3</md-radio-button>
+								<md-radio-button value=4>4</md-radio-button>
+								<md-radio-button value=5>5</md-radio-button>
+							</md-radio-group>
+						</div>
+					</div>
+				</div>
+				<hr>
+			</fieldset>
+			<fieldset data-ng-show=valores.porteEmpresa>
+				<legend>Adicionais</legend>
+				<div class=row>
+					<div class="col-md-6 col-xs-6">Compatibilidade com mobile</div>
+					<div class="col-md-6 col-xs-6">
+						<md-switch data-ng-model=valores.mobile data-ng-true-value="'300'" data-ng-false-value="'0'"></md-switch>
+					</div>
+				</div>
+				<div class=row>
+					<div class="col-md-6 col-xs-6"><abbr title="Oferece maior segurança para seu site" class=initialism>Estrutura
+						MVC</abbr></div>
+					<div class="col-md-6 col-xs-6">
+						<md-switch data-ng-model=valores.mvc data-ng-true-value="'400'" data-ng-false-value="'0'"></md-switch>
+					</div>
+				</div>
+				<div class=row>
+					<div class="col-md-6 col-xs-6">Hospedagem + Dominio (Anual)</div>
+					<div class="col-md-6 col-xs-6">
+						<md-switch data-ng-model=valores.dominioHospedagem data-ng-true-value="'350'" data-ng-false-value="'0'"></md-switch>
+					</div>
+				</div>
+				<div class=row>
+					<div class="col-md-6 col-xs-6">Manutenção (Mensal)</div>
+					<div class="col-md-6 col-xs-6">
+						<md-switch data-ng-model=valores.manutencao data-ng-true-value="'200'" data-ng-false-value="'0'"></md-switch>
+					</div>
+				</div>
+				<hr>
+			</fieldset>
+		</form>
+	</div>
+	<footer>
+		<div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-12">
+			<div class=copy>Desenvolvido por</div>
+			<a href=http://www.ogaiti.com.br id=logop class=blank></a></div>
+	</footer>
+
+	<script src="assets/js/libraries.min.js"></script>
+	<script src="assets/js/script.min.js"></script>
+</body>
+</html>
