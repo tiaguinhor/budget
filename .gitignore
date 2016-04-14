@@ -1,10 +1,5 @@
-.idea/
-components/
 node_modules/
-
-*/config/development
-*/logs/log-*.php
-*/logs/!index.html
-*/cache/*
-*/cache/!index.html
-*/cache/!.htaccess
+www/build/
+platforms/
+plugins/
+.DS_Store
