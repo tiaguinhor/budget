@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button button-clear" data-ng-click="closeModal(1)">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form data-ng-submit="sendData('login')">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" data-ng-model="dataVariable.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" data-ng-model="dataVariable.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Entrar</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

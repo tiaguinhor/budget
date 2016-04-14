@@ -13,23 +13,29 @@ var path = require('path'),
 	browserSync = require('browser-sync'),
 	watch = require('gulp-watch'),
 	changed = require('gulp-changed'),
-	directoryProject = 'tender/dist/';
+	directoryProject = 'tender/www/';
 
 gulp.task('html', function(){
 	// move html to different platforms
 	var opts = {comments: false, spare: true};
 
 	gulp.src(['src/**/*.html'])
-		.pipe(changed('dist', {extension: '.html'}))
+		.pipe(changed('www', {extension: '.html'}))
 		.pipe(minifyHTML(opts))
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('www'))
 		.on('error', function(err){
 			console.log(err.message);
 		});
+});
 
-	gulp.src(['src/**/*.php'])
-		.pipe(changed('dist', {extension: '.php'}))
-		.pipe(gulp.dest('dist'))
+gulp.task('templatesHtml', function(){
+	// move html to different platforms
+	var opts = {comments: true, spare: true};
+
+	gulp.src(['src/templates/*.html'])
+		.pipe(changed(DirectoryDist+'templates', {extension: '.html'}))
+		.pipe(minifyHTML(opts))
+		.pipe(gulp.dest(DirectoryDist+'templates/templates'))
 		.on('error', function(err){
 			console.log(err.message);
 		});
@@ -38,10 +44,11 @@ gulp.task('html', function(){
 gulp.task('fonts', function(){
 	gulp.src([
 			'components/components-font-awesome/fonts/**',
+			'src/lib/ionic/fonts/**',
 			'src/fonts/**'
 		])
-		.pipe(changed('dist/assets/fonts'))
-		.pipe(gulp.dest('dist/assets/fonts'))
+		.pipe(changed('www/assets/fonts'))
+		.pipe(gulp.dest('www/assets/fonts'))
 		.on('error', function(err){
 			console.log(err.message);
 		});
@@ -51,8 +58,8 @@ gulp.task('media', function(){
 	gulp.src([
 			'src/images/**'
 		])
-		.pipe(changed('dist/assets/images'))
-		.pipe(gulp.dest('dist/assets/images'))
+		.pipe(changed('www/assets/images'))
+		.pipe(gulp.dest('www/assets/images'))
 		.on('error', function(err){
 			console.log(err.message);
 		});
@@ -60,8 +67,8 @@ gulp.task('media', function(){
 	gulp.src([
 			'src/videos/**'
 		])
-		.pipe(changed('dist/assets/videos'))
-		.pipe(gulp.dest('dist/assets/videos'))
+		.pipe(changed('www/assets/videos'))
+		.pipe(gulp.dest('www/assets/videos'))
 		.on('error', function(err){
 			console.log(err.message);
 		});
@@ -71,16 +78,17 @@ gulp.task('css', function(){
 	gulp.src([
 			'components/components-font-awesome/scss/font-awesome.scss',
 			'components/angular-material/angular-material.scss',
+			'src/lib/ionic/scss/ionic.scss',
 			'src/css/**/*.css',
 			'src/scss/style.scss'
 		])
-		.pipe(changed('dist/assets/css', {extension: '.css'}))
+		.pipe(changed('www/assets/css', {extension: '.css'}))
 		.pipe(sass())
 		.pipe(autoprefixer('last 3 version'))
 		.pipe(minifyCSS())
 		.pipe(concat('style.min.css'))
 		.pipe(filesize())
-		.pipe(gulp.dest('dist/assets/css'))
+		.pipe(gulp.dest('www/assets/css'))
 		.on('error', function(err){
 			console.log(err.message);
 		});
@@ -88,21 +96,19 @@ gulp.task('css', function(){
 
 gulp.task('library', function(){
 	gulp.src([
+			'src/lib/ionic/js/ionic.bundle.min.js',
 			'components/jquery/dist/jquery.min.js',
-			'components/angular/angular.min.js',
 			'components/angular-cookies/angular-cookies.min.js',
-			'components/angular-sanitize/angular-sanitize.min.js',
-			'components/angular-animate/angular-animate.min.js',
 			'components/angular-aria/angular-aria.min.js',
 			'components/angular-touch/angular-touch.min.js',
 			'components/angular-locale-pt-br/angular-locale_pt-br.js',
 			'components/angular-material/angular-material.min.js',
 			'src/js/vendor/**/*.js'
 		])
-		.pipe(changed('dist/assets/js', {extension: '.js'}))
+		.pipe(changed('www/assets/js', {extension: '.js'}))
 		.pipe(concat('libraries.min.js'))
 		.pipe(uglify())
-		.pipe(gulp.dest('dist/assets/js'))
+		.pipe(gulp.dest('www/assets/js'))
 		.pipe(filesize())
 		.on('error', function(err){
 			console.log(err.message);
@@ -116,23 +122,15 @@ gulp.task('js', function(){
 			'src/js/app/config.js',
 			'src/js/app/**/*.js'
 		])
-		.pipe(changed('dist/assets/js', {extension: '.js'}))
+		.pipe(changed('www/assets/js', {extension: '.js'}))
 		.pipe(ngAnnotate())
 		.pipe(uglify())
 		.pipe(concat('script.min.js'))
-		.pipe(gulp.dest('dist/assets/js'))
+		.pipe(gulp.dest('www/assets/js'))
 		.pipe(filesize())
 		.on('error', function(err){
 			console.log(err.message);
 		});
-});
-
-gulp.task('server', function(){
-	//atualiza o navegador a cada alteracao
-	browserSync.init(['dist/**'], {
-		port: 8080,
-		proxy: 'http://localhost/' + directoryProject
-	});
 });
 
 gulp.task('watch', function(){
@@ -160,4 +158,4 @@ gulp.task('watch', function(){
 });
 
 // DEFAULT TASK
-gulp.task('default', ['server', 'fonts', 'html', 'media', 'css', 'library', 'js', 'watch']);
+gulp.task('default', ['fonts', 'html', 'media', 'css', 'library', 'js', 'watch']);

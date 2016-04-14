@@ -1,0 +1,204 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+body{
+  font-family: 'Roboto', "Helvetica Neue", "Segoe UI", sans-serif !important;
+}
+
+/* Empty. Add your own CSS if you like */
+
+.menu .item{
+  border-color: #28180d;
+}
+
+.menu .item a,
+.menu{
+  background-color: #3d2c21;
+  color: #fff;
+}
+
+.menu .item a.activated{
+  background-color: #764f31;
+}
+
+.modal, .pane, .view{
+  background-color: #fff8c5;
+}
+
+.pane p, .view p{
+  margin: 20px;
+  color: #764f31
+}
+
+.pane p a, .view p a{ color: #e64d3c; }
+
+.modal .bar-header,
+.nav-bar-block .bar-header{
+  background-color: #764f31;
+  color: #fff;
+}
+
+.modal .bar-header .button{
+  color: #fff;
+  font-size: 12px;
+}
+
+.modal .bar-header .title,
+.nav-bar-block .bar-header .button,
+.nav-bar-block .bar-header .title{
+  color: #fff;
+}
+
+form{
+  margin-bottom: 20px;
+}
+
+form .item-input span,
+form .item-input input{
+  color: #764f31
+}
+
+form .item{
+  border-color: #fdf6ad;
+}
+
+form .item:last-child{
+  background-color: transparent;
+  border: none;
+}
+
+.beerlist .item{
+  padding: 6px 16px;
+  border-color: #fdf6ad;
+  background-color: #fdf6ad;
+}
+
+.beerlist .item:nth-child(2n-1){
+  border-color: #fceba2;
+  background-color: #fceba2;
+}
+
+.beerlist .item img{
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.beerlist .item a, .featured li a{
+  line-height: 50px;
+  padding: 0;
+  color: #764f31;
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+
+.menu-link-home{
+  width: 60%;
+  display: block;
+  margin: 5px auto;
+  padding: 10px;
+  text-align: center;
+  color: #e64d3c;
+}
+
+.menu-link-home.activated{
+  border-color: #c03b2a;
+  background-color: #c03b2a;
+  color: #fff;
+}
+
+.logo{
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+}
+
+.button.button-positive{
+  border-color: #e64d3c;
+  background-color: #e64d3c;
+  color: #fff;
+}
+
+.button.button-positive.activated{
+  border-color: #c03b2a;
+  background-color: #c03b2a;
+}
+
+.featured{
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.featured li{
+  padding: 10px;
+}
+
+.featured img{
+  max-width: 100%;
+  display: block;
+}
+
+button.ion-ios-more{
+  transform: rotate(90deg);
+}
+
+ul[rn-carousel]{
+  width: 100%;
+  height: 200px;
+}
+
+ul[rn-carousel] img{
+  width: 100%;
+}
+
+.spinner{
+  fill: #00a7ff;
+  stroke: #00a7ff;
+}
+
+#details{
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #764f31;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1em;
+  .row{
+    margin: 5px 0;
+    object{
+      width: 40px;
+      margin-right: 0;
+    }
+    .rank{
+      font-size: 1.4em;
+      line-height: 1.4em;
+      position: relative;
+      float: left;
+      .title{
+        display: inline-block;
+      }
+      &.prices{
+        object{
+          margin-right: -10px;
+          svg{
+            path{
+              fill: green;
+            }
+          }
+        }
+      }
+      &.temperatures{
+        object{
+          width: 45px;
+          margin-right: -8px;
+          svg{
+            path{
+              fill: blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
