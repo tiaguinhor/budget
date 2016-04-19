@@ -1,0 +1,12 @@
+<ion-menu [content]="content">
+	<ion-content>
+		<ion-list>
+			<button ion-item (click)="openPage(about)" menuClose>About</button>
+			<a href="javascript:" ion-item menuClose>
+				<button>Developer's Resume Page</button>
+			</a>
+		</ion-list>
+	</ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

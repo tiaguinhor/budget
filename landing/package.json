@@ -1,0 +1,33 @@
+{
+  "name": "project",
+  "title": "Project",
+  "description": "Project...",
+  "version": "0.0.1",
+  "private": true,
+  "license": "ISC",
+  "authors": [
+    {
+      "name": "Tiago Rodrigo Calogero",
+      "email": "tiaguinhor@gmail.com",
+      "role": "Senior Full Stack Developer and Software Engineer",
+      "homepage": "http://curriculo.ogaiti.com.br"
+    }
+  ],
+  "devDependencies": {
+    "browser-sync": "^2.9.6",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-changed": "^1.3.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-filesize": "0.0.6",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-ng-annotate": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-uglify": "^1.4.1",
+    "gulp-util": "^2.2.20",
+    "gulp-watch": "^4.3.4"
+  }
+}

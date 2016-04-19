@@ -1,0 +1,21 @@
+.esconde{ display: none }
+
+form{ margin-top: 20px }
+
+#logop{ float: left; background: url(http://ogaiti.com.br/force/img/logo_bw.png) no-repeat; width: 90px; height: 20px; margin-left: 10px }
+
+#logop:hover{ background: url(http://ogaiti.com.br/force/img/_logo.png) no-repeat }
+
+.copy{ float: left }
+
+footer{ padding-bottom: 30px }
+
+.md-switch-thumb, md-radio-button{ display: inline }
+
+.md-switch-thumb:first-child, md-radio-button:first-child{ margin-left: 0 }
+
+md-checkbox{ margin: 5px auto }
+
+md-checkbox .md-container{ top: 0 }
+
+md-checkbox:first-child{ margin-left: 0 }
