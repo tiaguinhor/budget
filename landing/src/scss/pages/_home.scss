@@ -1,0 +1,26 @@
+form{
+  margin-top: 20px;
+}
+fieldset{
+  .row{
+    margin-bottom: 5px;
+  }
+}
+#logo{
+  float: left;
+  background: url("#{$imgDirectory}logo_bw.png") no-repeat;
+  width: 90px;
+  height: 20px;
+  margin-left: 10px;
+  &:hover{
+    background: url("#{$imgDirectory}logo.png") no-repeat;
+  }
+}
+#fork{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 238px;
+  background: url("#{$imgDirectory}fork.png");
+}

@@ -1,0 +1,19 @@
+.md-switch-thumb, md-radio-button{
+  display: inline;
+  margin-right: 10px;
+}
+.md-switch-thumb:first-child, md-radio-button:first-child{
+  margin-left: 0;
+}
+md-checkbox{
+  margin: 5px auto;
+}
+md-checkbox .md-container{
+  top: 0;
+}
+md-checkbox:first-child{
+  margin-left: 0;
+}
+md-switch{
+  margin: 0;
+}
