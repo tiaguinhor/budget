@@ -3,9 +3,9 @@ app.controller('HomeController', function($scope, $rootScope){
 		$scope.totalValue = 0;
 		$scope.days = 0;
 		$scope.values = {};
+		$scope.other = {};
 		$scope.staticValue = 'static-200';
 		$scope.dynamicValue = 'dynamic-500';
-		$scope.other = {};
 		$scope.typeLanguages = [
 			{
 				"abb": "pt",
@@ -30,23 +30,32 @@ app.controller('HomeController', function($scope, $rootScope){
 		$scope.totalValue = 0;
 
 		angular.forEach($scope.values, function(value, key){
-			$scope.totalValue += (value != 'NaN') ? parseFloat(value.split('-')[1]) : 0;
+			(value.split('-').length > 1)
+				? $scope.totalValue += parseFloat(value.split('-')[1])
+				: $scope.totalValue += parseFloat(value);
 		});
 
 		if($scope.service == 'site'){
-			if($scope.typeSite == 'template'){
-				$scope.days = 5;
-				$scope.totalValue += 500;
-
-				return;
-			}
-
 			angular.forEach($scope.other, function(value, key){
 				$scope.other.quantity = $scope.other.quantity || 1;
-				$scope.totalValue += (value != 'NaN') ? parseFloat($scope.other.value.split('-')[1] * $scope.other.quantity) : 0;
+
+				($scope.other.value.split('-').length > 1)
+					? $scope.totalValue += parseFloat($scope.other.value.split('-')[1] * $scope.other.quantity)
+					: $scope.totalValue += parseFloat($scope.other.value * $scope.other.quantity) ;
 			});
 		}
 	}, true);
+
+	$scope.$watch('typeSite', function(value){
+		if(value == 'template'){
+			var business = $scope.values.portBusiness;
+			$scope.other = {};
+			$scope.values = {};
+			$scope.days = 5;
+			$scope.values.portBusiness = business;
+			$scope.totalValue = parseFloat(business) + parseInt(500);
+		}
+	});
 
 	$scope.selectService = function(service){
 		$scope.values = {};
