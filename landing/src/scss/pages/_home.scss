@@ -1,26 +1,51 @@
-form{
-  margin-top: 20px;
-}
-fieldset{
-  .row{
-    margin-bottom: 5px;
+body{
+  form{
+    margin-top: 20px;
+  }
+  fieldset{
+    .row{
+      margin-bottom: 5px;
+    }
+  }
+  #logo{
+    float: left;
+    background: url("#{$imgDirectory}logo_bw.png") no-repeat;
+    width: 90px;
+    height: 20px;
+    margin-left: 10px;
+    &:hover{
+      background: url("#{$imgDirectory}logo.png") no-repeat;
+    }
+  }
+  #fork{
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+  #flag-fixed{
+    position: fixed;
+    top: 50%;
+    z-index: 9;
+    a{
+      display: block;
+    }
+    ul{
+      margin: 0;
+      background-color: rgba(0, 0, 0, .1);
+      li{
+        cursor: pointer;
+        padding: 10px;
+        transition: background-color .3s ease;
+        &:hover{
+          background-color: rgba(0, 0, 0, .1);
+        }
+        &:not(:last-child){
+          border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+      }
+    }
   }
 }
-#logo{
-  float: left;
-  background: url("#{$imgDirectory}logo_bw.png") no-repeat;
-  width: 90px;
-  height: 20px;
-  margin-left: 10px;
-  &:hover{
-    background: url("#{$imgDirectory}logo.png") no-repeat;
-  }
-}
-#fork{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 240px;
-  height: 238px;
-  background: url("#{$imgDirectory}fork.png");
+
+@media(max-width: 600px){
 }

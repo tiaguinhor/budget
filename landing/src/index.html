@@ -31,20 +31,35 @@
 </head>
 
 <body data-ng-controller="HomeController" data-ng-cloak>
+	<div id="flag-fixed">
+		<ul class="flags list-unstyled">
+			<li class="flag"
+			    data-ng-repeat="lang in typeLanguages"
+			    data-ng-class="lang.abb"
+			    data-ng-if="language != lang.abb"
+			    data-ng-click="changeLanguage(lang.abb)">
+				<img data-ng-src="{{::domain}}assets/images/flag-{{lang.abb}}.png" alt="">
+				<md-tooltip md-direction="right">{{lang.title}}</md-tooltip>
+			</li>
+		</ul>
+	</div>
+
 	<md-toolbar md-scroll-shrink>
 		<div class="md-toolbar-tools">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2 col-xs-12"><h3>ESTIMATIVA</h3></div>
-					<div class="col-md-4 col-xs-12"><h3><span>R$ {{totalValue}},00</span></h3></div>
+					<div class="col-md-2 col-xs-12"><h3>Estimativa:</h3></div>
+					<div class="col-md-4 col-xs-12"><h3><span>{{totalValue | currency}}</span></h3></div>
 					<div class="col-md-3 col-xs-12 text-right"><h3>Previsão de entrega:</h3></div>
-					<div class="col-md-3 col-xs-12 text-right"><h3>{{days}} dia(s)</h3></div>
+					<div class="col-md-3 col-xs-12 text-right"><h3>{{totalDays}} dia(s)</h3></div>
 				</div>
 			</div>
 		</div>
 
-		<a href="https://github.com/tiaguinhor/budget" target="_blank">
-			<div id="fork"></div>
+		<a href="https://github.com/tiaguinhor/budget/" target="_blank">
+			<div id="fork">
+				<img src="assets/images/fork.png" width="200" alt="">
+			</div>
 		</a>
 	</md-toolbar>
 
@@ -78,22 +93,21 @@
 				</div>
 
 				<div class="row">
-					<div class="col-md-6 col-xs-12" data-ng-click="selectService('app')">Aplicativos</div>
+					<div class="col-md-6 col-xs-12" data-ng-click="selectService('app')">Aplicativo</div>
 
 					<div data-ng-if="service == 'app'">
 						<div class="col-md-6 col-xs-12">
 							<md-radio-group class="md-primary" data-ng-model="values.portBusiness">
-								<md-radio-button value="{{dynamicValue}}">Android</md-radio-button>
+								<md-radio-button value="5000">Android</md-radio-button>
 								<md-radio-button value="7000">Iphone</md-radio-button>
 								<md-radio-button value="10000">Android + Iphone</md-radio-button>
-								<md-radio-button value="12000">Android + Iphone + Windows Phone</md-radio-button>
 							</md-radio-group>
 						</div>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-md-6 col-xs-12" data-ng-click="selectService('game')">Games (WebGL)</div>
+					<div class="col-md-6 col-xs-12" data-ng-click="selectService('game')">Game (WebGL)</div>
 
 					<div data-ng-if="service == 'game'">
 						<div class="col-md-6 col-xs-12">
@@ -101,7 +115,7 @@
 								<md-radio-button value="7000">Plataforma</md-radio-button>
 								<md-radio-button value="6000">Bullet</md-radio-button>
 								<md-radio-button value="4000">Puzzle</md-radio-button>
-								<md-radio-button value="{{dynamicValue}}">Arcade</md-radio-button>
+								<md-radio-button value="5000">Arcade</md-radio-button>
 							</md-radio-group>
 						</div>
 					</div>
@@ -130,8 +144,8 @@
 
 						<div class="col-md-6 col-xs-12">
 							<md-radio-group class="md-primary" data-ng-model="values.paginaInicial">
-								<md-radio-button value="{{staticValue}}">Estático</md-radio-button>
-								<md-radio-button value="{{dynamicValue}}">Dinâmico</md-radio-button>
+								<md-radio-button value="static-{{staticValue}}">Estático</md-radio-button>
+								<md-radio-button value="dynamic-{{dynamicValue}}">Dinâmico</md-radio-button>
 							</md-radio-group>
 						</div>
 					</div>
@@ -141,8 +155,8 @@
 
 						<div class="col-md-6 col-xs-12">
 							<md-radio-group class="md-primary" data-ng-model="values.quemSomos">
-								<md-radio-button value="{{staticValue}}">Estático</md-radio-button>
-								<md-radio-button value="{{dynamicValue}}">Dinâmico</md-radio-button>
+								<md-radio-button value="static-{{staticValue}}">Estático</md-radio-button>
+								<md-radio-button value="dynamic-{{dynamicValue}}">Dinâmico</md-radio-button>
 							</md-radio-group>
 						</div>
 					</div>
@@ -152,8 +166,8 @@
 
 						<div class="col-md-6 col-xs-12">
 							<md-radio-group class="md-primary" data-ng-model="values.contato">
-								<md-radio-button value="{{staticValue}}">Estático</md-radio-button>
-								<md-radio-button value="{{dynamicValue}}">Dinâmico</md-radio-button>
+								<md-radio-button value="static-{{staticValue}}">Estático</md-radio-button>
+								<md-radio-button value="dynamic-{{dynamicValue}}">Dinâmico</md-radio-button>
 							</md-radio-group>
 						</div>
 					</div>
@@ -165,8 +179,8 @@
 
 						<div class="col-md-6 col-xs-12">
 							<md-radio-group class="md-primary" data-ng-model="other.value">
-								<md-radio-button value="300">Estático</md-radio-button>
-								<md-radio-button value="700">Dinâmico</md-radio-button>
+								<md-radio-button value="static-{{staticValue}}">Estático</md-radio-button>
+								<md-radio-button value="dynamic-{{dynamicValue}}">Dinâmico</md-radio-button>
 							</md-radio-group>
 						</div>
 					</div>
@@ -193,20 +207,22 @@
 				<legend>Adicionais</legend>
 
 				<div class="row">
-					<div class="col-md-6 col-xs-12">Compatibilidade com mobile</div>
+					<div class="col-md-6 col-xs-12">
+						<abbr title="Compatível com dispositivos móveis" class="initialism">Responsivo</abbr>
+					</div>
 
 					<div class="col-md-6 col-xs-12">
-						<md-switch class="md-primary" data-ng-model="values.mobile" data-ng-true-value="'300'" data-ng-false-value="'0'"></md-switch>
+						<md-switch class="md-primary" data-ng-model="values.mobile" data-ng-true-value="'{{responsiveValue}}'" data-ng-false-value="'0'"></md-switch>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-md-6 col-xs-12">
-						<abbr title="Oferece maior segurança para seu site" class=initialism>Estrutura MVC</abbr>
+						<abbr title="Oferece maior segurança e agilidade para seu site" class="initialism">Estrutura MVC</abbr>
 					</div>
 
 					<div class="col-md-6 col-xs-12">
-						<md-switch class="md-primary" data-ng-model="values.mvc" data-ng-true-value="'400'" data-ng-false-value="'0'"></md-switch>
+						<md-switch class="md-primary" data-ng-model="values.mvc" data-ng-true-value="'{{mvcValue}}'" data-ng-false-value="'0'"></md-switch>
 					</div>
 				</div>
 
@@ -214,7 +230,7 @@
 					<div class="col-md-6 col-xs-12">Hospedagem + Dominio (Anual)</div>
 
 					<div class="col-md-6 col-xs-12">
-						<md-switch class="md-primary" data-ng-model="values.dominioHospedagem" data-ng-true-value="'350'" data-ng-false-value="'0'"></md-switch>
+						<md-switch class="md-primary" data-ng-model="values.domain" data-ng-true-value="'{{domainValue}}'" data-ng-false-value="'0'"></md-switch>
 					</div>
 				</div>
 
@@ -222,7 +238,7 @@
 					<div class="col-md-6 col-xs-12">Manutenção (Mensal)</div>
 
 					<div class="col-md-6 col-xs-12">
-						<md-switch class="md-primary" data-ng-model="values.manutencao" data-ng-true-value="'200'" data-ng-false-value="'0'"></md-switch>
+						<md-switch class="md-primary" data-ng-model="values.maintenance" data-ng-true-value="'{{maintenanceValue}}'" data-ng-false-value="'0'"></md-switch>
 					</div>
 				</div>
 

@@ -1,6 +1,7 @@
 ﻿angular.element(document).ready(function(){
-	angular.bootstrap(document, ['tender']);
+	angular.bootstrap(document, ['budget']);
 });
 
 jQuery(function($){
+	//
 });
