@@ -25,6 +25,13 @@ gulp.task('html', function(){
 		.on('error', function(err){
 			console.log(err.message);
 		});
+
+	gulp.src(['src/email.php'])
+		.pipe(changed('dist', {extension: '.php'}))
+		.pipe(gulp.dest('dist'))
+		.on('error', function(err){
+			console.log(err.message);
+		});
 });
 
 gulp.task('fonts', function(){
@@ -134,7 +141,7 @@ gulp.task('server', function(){
 });
 
 gulp.task('watch', function(){
-	var html = gulp.watch(['src/**/*.html'], ['html']);
+	var html = gulp.watch(['src/**/*.html', 'src/email.php'], ['html']);
 	var images = gulp.watch(['src/images/**', 'src/videos/**'], ['media']);
 	var css = gulp.watch(['src/scss/**'], ['css']);
 	var js = gulp.watch(['src/js/**'], ['js']);
