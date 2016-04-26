@@ -19,6 +19,7 @@ app.run(function($rootScope, $cookies){
 				"title": "Orçamento Virtual",
 				"service": "Serviços",
 				"applicationTitle": "Aplicativos",
+				"typeCompanyTitle": "Tipo de Empresa",
 				"typeSiteTitle": "Tipo de Site",
 				"templateTitle": "Criar site utilizando template",
 				"customTitle": "Criar site personalizado",

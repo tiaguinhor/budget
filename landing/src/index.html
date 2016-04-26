@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<!--<title>Virtual Budget</title>-->
+	<title>Virtual Budget</title>
 
 	<!--SEO-->
 	<link rel="canonical" href="http://budget.ogaiti.com.br/"/>
@@ -79,7 +79,9 @@
 					<md-content class="md-padding">
 						<div data-ng-show="service == 'site'">
 							<div class="row">
-								<div class="col-xs-12">
+								<div class="col-xs-12 col-md-4">{{translate.typeCompanyTitle}}</div>
+
+								<div class="col-xs-12 col-md-8">
 									<md-radio-group class="md-primary" data-ng-model="values.sizedCompany">
 										<md-radio-button data-ng-repeat="company in translate.business" value="{{company.value}}">
 											{{company.sized}}

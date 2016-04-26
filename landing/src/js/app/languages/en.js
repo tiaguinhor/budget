@@ -13,6 +13,7 @@ app.run(function($rootScope){
 				"title": "Virtual Budget",
 				"service": "Services",
 				"applicationTitle": "Applications",
+				"typeCompanyTitle": "Type of Company",
 				"typeSiteTitle": "Type of Site",
 				"templateTitle": "Create website using template",
 				"customTitle": "Create custom site",
