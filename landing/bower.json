@@ -25,7 +25,6 @@
     "angular-sanitize": "^1.5.5",
     "angular-ui-router": "^0.2.18",
     "components-font-awesome": "^4.5.0",
-    "angular-ladda": "^0.3.4",
     "angular-cookies": "^1.5.5",
     "angular-material": "^1.0.7",
     "jquery": "^2.2.3",

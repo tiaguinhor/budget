@@ -71,7 +71,6 @@ gulp.task('css', function(){
 		'components/angular-material/angular-material.scss',
 		'components/bootstrap/dist/css/bootstrap.min.css',
 		'components/components-font-awesome/scss/font-awesome.scss',
-		'components/ladda/dist/ladda-themeless.min.css',
 		'src/css/**',
 		'src/scss/style.scss'
 	])
@@ -99,9 +98,6 @@ gulp.task('library', function(){
 		'components/angular-animate/angular-animate.min.js',
 		'components/angular-aria/angular-aria.min.js',
 		'components/angular-locale-pt-br/angular-locale_pt-br.js',
-		'components/ladda/dist/spin.min.js',
-		'components/ladda/dist/ladda.min.js',
-		'components/angular-ladda/dist/angular-ladda.min.js',
 		'src/js/vendors/**/*.js'
 	])
 		.pipe(changed('dist/assets/js', {extension: '.js'}))

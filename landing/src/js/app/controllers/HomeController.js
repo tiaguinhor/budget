@@ -39,6 +39,11 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 				"title": "English"
 			}
 		];
+
+		//aguarda carregamento
+		$timeout(function(){
+			$scope.send = $rootScope.translate.sendButton;
+		}, 0);
 	};
 
 	// fire on controller loaded
@@ -162,7 +167,14 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 	//envia formulario
 	$scope.submit = function(){
 		if($scope.user){
+			$scope.send = $rootScope.translate.sendingButton;
+
 			sendEmail.get($scope.totalValue, $scope.totalDays, $scope.values, $scope.other, $scope.user, $scope.user.email).success(function(callback){
+				delete $scope.user;
+				$scope.form.$setPristine();
+				$scope.form.$setUntouched();
+				$scope.send = $rootScope.translate.sendButton;
+
 				$mdToast.show(
 					$mdToast.simple()
 						.textContent(callback)
@@ -170,6 +182,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 						.hideDelay(3000)
 				);
 			}).error(function(){
+				$scope.loading = false;
 				console.error('Ajax factory error.');
 			});
 		}else{

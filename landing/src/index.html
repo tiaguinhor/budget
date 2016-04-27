@@ -64,7 +64,7 @@
 	</md-toolbar>
 
 	<section class="container">
-		<form>
+		<form name="form">
 			<div class="alert alert-info scale-fade" data-ng-class="animation" data-ng-if="!close">
 				<button type="button" class="close" data-ng-click="closePopup()">&times;</button>
 				{{translate.popup}}
@@ -79,9 +79,9 @@
 					<md-content class="md-padding">
 						<div data-ng-show="service == 'site'">
 							<div class="row">
-								<div class="col-xs-12 col-md-4">{{translate.typeCompanyTitle}}</div>
+								<div class="col-xs-12 col-md-6">{{translate.typeCompanyTitle}}</div>
 
-								<div class="col-xs-12 col-md-8">
+								<div class="col-xs-12 col-md-6">
 									<md-radio-group class="md-primary" data-ng-model="values.sizedCompany">
 										<md-radio-button data-ng-repeat="company in translate.business" value="{{company.value}}">
 											{{company.sized}}
@@ -263,21 +263,21 @@
 				<div class="col-xs-6">
 					<div class="row">
 						<md-input-container class="col-xs-6">
-							<input ng-model="user.name">
+							<input ng-model="user.name" required>
 							<label>Nome</label>
 						</md-input-container>
 						<md-input-container class="col-xs-6">
-							<input ng-model="user.email" type="email">
+							<input ng-model="user.email" type="email" required>
 							<label>Email</label>
 						</md-input-container>
 						<md-input-container class="col-xs-12">
-							<md-button class="md-raised md-primary" data-ng-click="submit()">Enviar</md-button>
+							<md-button class="md-raised md-primary" ng-disabled="form.$invalid" data-ng-click="submit()">{{send}}</md-button>
 						</md-input-container>
 					</div>
 				</div>
 				<div class="col-xs-6">
 					<md-input-container class="md-block">
-						<textarea ng-model="user.description" md-maxlength="300" md-select-on-focus></textarea>
+						<textarea ng-model="user.description" md-maxlength="300" md-select-on-focus required></textarea>
 						<label>Descrição</label>
 					</md-input-container>
 				</div>
@@ -286,9 +286,14 @@
 	</section>
 
 	<footer>
-		<div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-12">
-			<div class="copy">{{translate.copyright}}</div>
-			<a href="http://curriculo.ogaiti.com.br" id="logo" target="_blank"></a></div>
+		<div class="row">
+			<div class="container">
+				<div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-12">
+					<div class="copy">{{translate.copyright}}</div>
+					<a href="http://curriculo.ogaiti.com.br" id="logo" target="_blank"></a>
+				</div>
+			</div>
+		</div>
 	</footer>
 
 	<script src="assets/js/libraries.min.js"></script>

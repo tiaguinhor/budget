@@ -38,6 +38,8 @@ app.run(function($rootScope, $cookies){
 				"staticTitle": "Estático",
 				"dynamicTitle": "Dinâmico",
 				"copyright": "Desenvolvido por",
+				"sendButton": "Enviar",
+				"sendingButton": "Enviando...",
 				"business": [
 					{
 						"sized": "Pessoal",

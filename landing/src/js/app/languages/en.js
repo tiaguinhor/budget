@@ -32,6 +32,8 @@ app.run(function($rootScope){
 				"staticTitle": "Static",
 				"dynamicTitle": "Dynamic",
 				"copyright": "Developed by",
+				"sendButton": "Send",
+				"sendingButton": "Sending...",
 				"business": [
 					{
 						"sized": "SP",

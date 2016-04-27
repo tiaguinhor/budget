@@ -2,15 +2,13 @@ body{
   form{
     margin-top: 20px;
   }
-  fieldset{
-    .row{
-      margin-bottom: 5px;
-    }
-  }
   section{
     &.container{
       padding-top: 70px;
     }
+  }
+  .row{
+    margin-bottom: 5px;
   }
   #logo{
     float: left;
