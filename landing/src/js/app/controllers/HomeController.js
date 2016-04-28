@@ -114,6 +114,11 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 				$scope.totalHours += _hourResponsive;
 
 			$scope.totalDays = $scope.totalHours / _hourWorkPerDay;
+
+			if(newValues[0].application)
+				$scope.totalDays += 30;
+			if(newValues[0].game)
+				$scope.totalDays += 30;
 		}, 0)
 	}, true);
 
@@ -146,13 +151,6 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		$scope.values = {};
 		$scope.other = {};
 		$scope.service = service;
-
-		if(service == 'game')
-			$scope.totalDays = 30;
-		else if(service == 'app')
-			$scope.totalDays = 30;
-		else
-			$scope.totalDays = 0;
 
 		//fix set value to 0
 		$timeout(function(){

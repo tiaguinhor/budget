@@ -33,18 +33,23 @@ md-toast{
 
 md-toolbar{
   position: fixed;
-  //width: calc(100% - 15px);
 }
 
 md-content{
+  overflow-x: hidden;
   md-input-container{
     button{
-      margin: 0;
+      margin: 0 !important;
     }
     input ~ label{
       left: 12px !important;
     }
   }
+}
+
+md-tabs md-ink-bar{
+  color: rgb(63, 81, 181);
+  background: rgb(63, 81, 181);
 }
 
 @media(max-width: 768px) {

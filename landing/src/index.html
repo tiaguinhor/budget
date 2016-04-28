@@ -44,7 +44,7 @@
 		</ul>
 	</div>
 
-	<md-toolbar md-scroll-shrink>
+	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<div class="container">
 				<div class="row">
@@ -241,7 +241,7 @@
 					<md-content class="md-padding">
 						<div data-ng-show="service == 'app'">
 							<div class="col-xs-12">
-								<md-radio-group class="md-primary" data-ng-model="values.sizedCompany">
+								<md-radio-group class="md-primary" data-ng-model="values.application">
 									<md-radio-button data-ng-repeat="application in translate.applications" value="{{application.value}}">
 										{{application.name}}
 									</md-radio-button>
@@ -255,7 +255,7 @@
 					<md-content class="md-padding">
 						<div data-ng-show="service == 'game'">
 							<div class="col-xs-12">
-								<md-radio-group class="md-primary" data-ng-model="values.sizedCompany">
+								<md-radio-group class="md-primary" data-ng-model="values.game">
 									<md-radio-button data-ng-repeat="game in translate.games" value="{{game.value}}">
 										{{game.type}}
 									</md-radio-button>
@@ -278,7 +278,9 @@
 							<label>{{translate.formEmail}}</label>
 						</md-input-container>
 						<md-input-container class="col-xs-12">
-							<md-button class="md-raised md-primary" ng-disabled="form.$invalid || loading" data-ng-click="submit()">{{send}}</md-button>
+							<md-button class="md-raised md-primary" ng-disabled="form.$invalid || loading" data-ng-click="submit()">
+								{{send}}
+							</md-button>
 						</md-input-container>
 					</div>
 				</div>
@@ -293,14 +295,8 @@
 	</section>
 
 	<footer>
-		<div class="row">
-			<div class="container">
-				<div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-12">
-					<div class="copy">{{translate.copyright}}</div>
-					<a href="http://curriculo.ogaiti.com.br" id="logo" target="_blank"></a>
-				</div>
-			</div>
-		</div>
+		<div class="copy">{{translate.copyright}}</div>
+		<a href="http://curriculo.ogaiti.com.br" id="logo" target="_blank"></a>
 	</footer>
 
 	<script src="assets/js/libraries.min.js"></script>
