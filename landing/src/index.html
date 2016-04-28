@@ -17,9 +17,9 @@
 	<meta property="og:image" content="http://budget.ogaiti.com.br/assets/images/favicon.png"/>
 	<meta property="og:image:url" content="http://budget.ogaiti.com.br/assets/images/favicon.png"/>
 	<meta property="og:locale" content="pt_BR"/>
-	<meta property="og:title" content="TIAGO CALÓGERO"/>
-	<meta property="og:description" content="Virtual budget Tiago Rodrigo Calógero"/>
-	<meta property="og:site_name" content="OGAITI"/>
+	<meta property="og:title" content="Virtual Budget"/>
+	<meta property="og:description" content="Virtual Budget Tiago Rodrigo Calógero"/>
+	<meta property="og:site_name" content="Virtual Budget"/>
 	<meta property="og:type" content="website"/>
 
 	<!--favicon-->
@@ -48,15 +48,19 @@
 		<div class="md-toolbar-tools">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2 col-xs-12"><h3>{{translate.total}}</h3></div>
-					<div class="col-md-4 col-xs-12"><h3><span>{{totalValue | currency}}</span></h3></div>
-					<div class="col-md-3 col-xs-12 text-right"><h3>{{translate.forecast}}</h3></div>
-					<div class="col-md-3 col-xs-12 text-right"><h3>{{totalDays}} {{translate.days}}</h3></div>
+					<div class="col-xs-4 col-sm-6">
+						<h3>{{translate.total}}</h3>
+						<h3>{{totalValue | currency}}</h3>
+					</div>
+					<div class="col-xs-8 col-sm-6 text-right">
+						<h3>{{translate.forecast}}</h3>
+						<h3>{{totalDays}} {{translate.days}}</h3>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<a href="https://github.com/tiaguinhor/budget/" target="_blank">
+		<a href="https://github.com/tiaguinhor/budget/" target="_blank" class="fork">
 			<div id="fork">
 				<img src="assets/images/fork.png" width="200" alt="">
 			</div>
@@ -66,7 +70,10 @@
 	<section class="container">
 		<form name="form">
 			<div class="alert alert-info scale-fade" data-ng-class="animation" data-ng-if="!close">
-				<button type="button" class="close" data-ng-click="closePopup()">&times;</button>
+				<a href="javascript:" class="close" data-ng-click="closePopup()">
+					<i class="fa fa-times"></i>
+				</a>
+
 				{{translate.popup}}
 			</div>
 
@@ -75,11 +82,11 @@
 			<hr>
 
 			<md-tabs md-dynamic-height md-border-bottom>
-				<md-tab label="WebSite" data-ng-click="selectService('site')">
+				<md-tab label="WebSite" data-ng-click="selectService('website')">
 					<md-content class="md-padding">
-						<div data-ng-show="service == 'site'">
+						<div data-ng-show="service == 'website'">
 							<div class="row">
-								<div class="col-xs-12 col-md-6">{{translate.typeCompanyTitle}}</div>
+								<div class="col-xs-12 col-md-6 title">{{translate.typeCompanyTitle}}</div>
 
 								<div class="col-xs-12 col-md-6">
 									<md-radio-group class="md-primary" data-ng-model="values.sizedCompany">
@@ -91,9 +98,9 @@
 							</div>
 						</div>
 
-						<div data-ng-show="values.sizedCompany && service == 'site'">
+						<div data-ng-show="values.sizedCompany && service == 'website'">
 							<div class="row">
-								<div class="col-xs-12 col-md-6">{{translate.typeSiteTitle}}</div>
+								<div class="col-xs-12 col-md-6 title">{{translate.typeSiteTitle}}</div>
 
 								<div class="col-xs-12 col-md-6">
 									<md-radio-group class="md-primary" data-ng-model="typeSite">
@@ -105,7 +112,7 @@
 
 							<div data-ng-show="typeSite == 'custom'">
 								<div class="row">
-									<div class="col-xs-12 col-md-6">{{translate.homeTitle}}</div>
+									<div class="col-xs-12 col-md-6 title">{{translate.homeTitle}}</div>
 
 									<div class="col-xs-12 col-md-6">
 										<md-radio-group class="md-primary" data-ng-model="values.home">
@@ -120,7 +127,7 @@
 								</div>
 
 								<div class="row">
-									<div class="col-xs-12 col-md-6">{{translate.whoTitle}}</div>
+									<div class="col-xs-12 col-md-6 title">{{translate.whoTitle}}</div>
 
 									<div class="col-xs-12 col-md-6">
 										<md-radio-group class="md-primary" data-ng-model="values.who">
@@ -135,7 +142,7 @@
 								</div>
 
 								<div class="row">
-									<div class="col-xs-12 col-md-6">{{translate.contactTitle}}</div>
+									<div class="col-xs-12 col-md-6 title">{{translate.contactTitle}}</div>
 
 									<div class="col-xs-12 col-md-6">
 										<md-radio-group class="md-primary" data-ng-model="values.contact">
@@ -152,7 +159,7 @@
 								<hr>
 
 								<div class="row">
-									<div class="col-xs-12 col-md-6">{{translate.otherTitle}}</div>
+									<div class="col-xs-12 col-md-6 title">{{translate.otherTitle}}</div>
 
 									<div class="col-xs-12 col-md-6">
 										<md-radio-group class="md-primary" data-ng-model="other.value">
@@ -167,7 +174,7 @@
 								</div>
 
 								<div class="row">
-									<div class="col-xs-12 col-md-6" data-ng-show="other.value">
+									<div class="col-xs-12 col-md-6 title" data-ng-show="other.value">
 										{{translate.quantityTitle}}
 									</div>
 
@@ -186,7 +193,7 @@
 							<hr>
 						</div>
 
-						<fieldset data-ng-show="values.sizedCompany && service == 'site' && typeSite == 'custom'">
+						<fieldset data-ng-show="values.sizedCompany && service == 'website' && typeSite == 'custom'">
 							<legend>{{translate.extrasTitle}}</legend>
 
 							<div class="row">
@@ -262,23 +269,23 @@
 			<md-content>
 				<div class="col-xs-6">
 					<div class="row">
-						<md-input-container class="col-xs-6">
+						<md-input-container class="col-xs-12 col-md-6">
 							<input ng-model="user.name" required>
-							<label>Nome</label>
+							<label>{{translate.formName}}</label>
 						</md-input-container>
-						<md-input-container class="col-xs-6">
+						<md-input-container class="col-xs-12 col-md-6">
 							<input ng-model="user.email" type="email" required>
-							<label>Email</label>
+							<label>{{translate.formEmail}}</label>
 						</md-input-container>
 						<md-input-container class="col-xs-12">
-							<md-button class="md-raised md-primary" ng-disabled="form.$invalid" data-ng-click="submit()">{{send}}</md-button>
+							<md-button class="md-raised md-primary" ng-disabled="form.$invalid || loading" data-ng-click="submit()">{{send}}</md-button>
 						</md-input-container>
 					</div>
 				</div>
 				<div class="col-xs-6">
 					<md-input-container class="md-block">
 						<textarea ng-model="user.description" md-maxlength="300" md-select-on-focus required></textarea>
-						<label>Descrição</label>
+						<label>{{translate.formDescription}}</label>
 					</md-input-container>
 				</div>
 			</md-content>

@@ -34,6 +34,11 @@ app.run(function($rootScope){
 				"copyright": "Developed by",
 				"sendButton": "Send",
 				"sendingButton": "Sending...",
+				"formName": "Name",
+				"formEmail": "Email",
+				"formDescription": "Description",
+				"successCallback": "Email successfully sent!",
+				"errorCallback": "Something went wrong, try again later or contact me directly by email <strong>tiaguinhor [at] gmail [.] com</strong>... Thank you!",
 				"business": [
 					{
 						"sized": "SP",

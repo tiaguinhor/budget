@@ -69,9 +69,8 @@ gulp.task('media', function(){
 gulp.task('css', function(){
 	gulp.src([
 		'components/angular-material/angular-material.scss',
-		'components/bootstrap/dist/css/bootstrap.min.css',
 		'components/components-font-awesome/scss/font-awesome.scss',
-		'src/css/**',
+		'src/css/**/*.css',
 		'src/scss/style.scss'
 	])
 		.pipe(changed('dist/assets/css', {extension: '.css'}))

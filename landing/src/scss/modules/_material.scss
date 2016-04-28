@@ -7,10 +7,6 @@
   margin-left: 0;
 }
 
-md-input-container input ~ label{
-  left: 12px !important;
-}
-
 md-checkbox{
   margin: 5px auto;
 }
@@ -37,4 +33,40 @@ md-toast{
 
 md-toolbar{
   position: fixed;
+  //width: calc(100% - 15px);
+}
+
+md-content{
+  md-input-container{
+    button{
+      margin: 0;
+    }
+    input ~ label{
+      left: 12px !important;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .md-toolbar-tools{
+    font-size: 14px;
+    padding: 0;
+    .container{
+      width: 100%;
+      margin: 0;
+    }
+  }
+  md-radio-group md-radio-button:not(:first-child){
+    margin-top: 8px;
+  }
+  md-radio-button{
+    display: block;
+    margin: 0;
+  }
+  md-content{
+    padding: 20px 0;
+    md-input-container{
+      margin: 0;
+    }
+  }
 }

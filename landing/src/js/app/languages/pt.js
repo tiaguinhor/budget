@@ -40,6 +40,11 @@ app.run(function($rootScope, $cookies){
 				"copyright": "Desenvolvido por",
 				"sendButton": "Enviar",
 				"sendingButton": "Enviando...",
+				"formName": "Nome",
+				"formEmail": "Email",
+				"formDescription": "Descrição",
+				"successCallback": "Email enviado com sucesso!",
+				"errorCallback": "Algo deu errado, tente novamente mais tarde ou diretamente pelo email <strong>tiaguinhor [at] gmail [.] com</strong>... Obrigado!",
 				"business": [
 					{
 						"sized": "Pessoal",

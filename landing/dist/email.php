@@ -22,9 +22,9 @@ foreach(json_decode($_GET['user']) as $user){
     $texto .= $user.PHP_EOL;
 }
 
-$envio = mail("tiaguinhor@gmail.com", "Virtual Budget", $texto, $headers);
+$envio = mail($_GET['emailOrigin'], "Virtual Budget", $texto, $headers);
 
 if($envio)
-    echo "Email successfully sent!";
+    echo $_GET['success'];
 else
-    echo "Something went wrong, try again later or contact me directly by email <strong>tiaguinhor [at] gmail [.] com</strong>... Thank you!";
+    echo $_GET['error'];

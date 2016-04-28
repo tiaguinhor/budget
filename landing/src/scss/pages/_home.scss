@@ -1,4 +1,5 @@
 body{
+  overflow-x: hidden;
   form{
     margin-top: 20px;
   }
@@ -7,8 +8,21 @@ body{
       padding-top: 70px;
     }
   }
+  .alert{
+    position: relative;
+    .close{
+      position: absolute;
+      right: 20px;
+      &:focus{
+        outline: 0;
+      }
+    }
+  }
   .row{
     margin-bottom: 5px;
+  }
+  .title{
+    font-weight: bolder;
   }
   #logo{
     float: left;
@@ -20,10 +34,14 @@ body{
       background: url("#{$imgDirectory}logo.png") no-repeat;
     }
   }
-  #fork{
-    position: fixed;
-    top: 0;
-    right: 0;
+  a{
+    &.fork{
+      #fork{
+        position: fixed;
+        top: 0;
+        right: 0;
+      }
+    }
   }
   #flag-fixed{
     position: fixed;
@@ -50,5 +68,16 @@ body{
   }
 }
 
-@media(max-width: 600px){
+@media(max-width: 768px){
+  a{
+    &.fork{
+      display: none;
+    }
+  }
+  #flag-fixed{
+    right: 0;
+  }
+  .title{
+    margin: 20px 0 10px;
+  }
 }

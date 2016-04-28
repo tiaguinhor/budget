@@ -1,16 +1,22 @@
 app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast, sendEmail){
-	//hours
+
+	/**
+	 * BEGIN OPTIONS
+	 */
+	$rootScope.email = 'tiaguinhor@gmail.com';
 	var _hourValue = 100,
 		_hourStaticPage = 2,
 		_hourDynamicPage = 4,
 		_hourResponsive = 8,
-		_hourPerDay = 2,
-	//values
+		_hourWorkPerDay = 2,
 		_templateValue = 500,
 		_responsiveValue = 500,
 		_mvcValue = 300,
 		_domainValue = 350,
 		_maintenanceValue = 200;
+	/**
+	 * END OPTIONS
+	 */
 
 	var init = function(){
 		$scope.totalValue = 0;
@@ -19,7 +25,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 
 		$scope.values = {};
 		$scope.other = {};
-		$scope.service = 'site';
+		$scope.service = 'website';
 
 		$scope.staticValue = parseFloat(_hourValue * _hourStaticPage);
 		$scope.dynamicValue = parseFloat(_hourValue * _hourDynamicPage);
@@ -107,7 +113,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			if(newValues[0].mobile && newValues[0].mobile != 0)
 				$scope.totalHours += _hourResponsive;
 
-			$scope.totalDays = $scope.totalHours / _hourPerDay;
+			$scope.totalDays = $scope.totalHours / _hourWorkPerDay;
 		}, 0)
 	}, true);
 
@@ -167,10 +173,12 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 	//envia formulario
 	$scope.submit = function(){
 		if($scope.user){
+			$scope.loading = true;
 			$scope.send = $rootScope.translate.sendingButton;
 
 			sendEmail.get($scope.totalValue, $scope.totalDays, $scope.values, $scope.other, $scope.user, $scope.user.email).success(function(callback){
 				delete $scope.user;
+				$scope.loading = false;
 				$scope.form.$setPristine();
 				$scope.form.$setUntouched();
 				$scope.send = $rootScope.translate.sendButton;
