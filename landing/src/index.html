@@ -111,80 +111,47 @@
 							</div>
 
 							<div data-ng-show="typeSite == 'custom'">
-								<div class="row">
-									<div class="col-xs-12 col-md-6 title">{{translate.homeTitle}}</div>
+								<fieldset id="newPage">
+									<legend>Insira a nova página</legend>
+
+									<div class="row">
+										<md-input-container class="col-md-4">
+											<input ng-model="newPage.title">
+											<label>{{translate.pageNameTitle}}</label>
+										</md-input-container>
+
+										<md-input-container class="col-md-4">
+											<textarea ng-model="newPage.description" md-maxlength="300" md-select-on-focus></textarea>
+											<label>{{translate.pageDescriptionTitle}}</label>
+										</md-input-container>
+
+										<md-switch class="col-md-3 md-primary" data-ng-model="newPage.type" data-ng-true-value="'{{translate.dynamicTitle}}'" data-ng-false-value="'{{translate.staticTitle}}'">
+											{{newPage.type || translate.staticTitle}}
+										</md-switch>
+
+										<md-input-container class="col-md-1">
+											<md-button class="md-fab md-primary md-mini" data-ng-click="insertNewPage(newPage)">
+												<i class="fa fa-plus"></i>
+											</md-button>
+										</md-input-container>
+									</div>
+								</fieldset>
+
+								<div class="row" data-ng-repeat="page in pages">
+									<hr data-ng-if="$first">
+
+									<div class="col-xs-12 col-md-6 title">
+										<abbr title="{{page.description}}" class="initialism">{{page.title}}</abbr>
+									</div>
 
 									<div class="col-xs-12 col-md-6">
-										<md-radio-group class="md-primary" data-ng-model="values.home">
+										<md-radio-group class="md-primary" data-ng-model="page.type">
 											<md-radio-button value="static-{{staticValue}}">
 												{{translate.staticTitle}}
 											</md-radio-button>
 											<md-radio-button value="dynamic-{{dynamicValue}}">
 												{{translate.dynamicTitle}}
 											</md-radio-button>
-										</md-radio-group>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-xs-12 col-md-6 title">{{translate.whoTitle}}</div>
-
-									<div class="col-xs-12 col-md-6">
-										<md-radio-group class="md-primary" data-ng-model="values.who">
-											<md-radio-button value="static-{{staticValue}}">
-												{{translate.staticTitle}}
-											</md-radio-button>
-											<md-radio-button value="dynamic-{{dynamicValue}}">
-												{{translate.dynamicTitle}}
-											</md-radio-button>
-										</md-radio-group>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-xs-12 col-md-6 title">{{translate.contactTitle}}</div>
-
-									<div class="col-xs-12 col-md-6">
-										<md-radio-group class="md-primary" data-ng-model="values.contact">
-											<md-radio-button value="static-{{staticValue}}">
-												{{translate.staticTitle}}
-											</md-radio-button>
-											<md-radio-button value="dynamic-{{dynamicValue}}">
-												{{translate.dynamicTitle}}
-											</md-radio-button>
-										</md-radio-group>
-									</div>
-								</div>
-
-								<hr>
-
-								<div class="row">
-									<div class="col-xs-12 col-md-6 title">{{translate.otherTitle}}</div>
-
-									<div class="col-xs-12 col-md-6">
-										<md-radio-group class="md-primary" data-ng-model="other.value">
-											<md-radio-button value="static-{{staticValue}}">
-												{{translate.staticTitle}}
-											</md-radio-button>
-											<md-radio-button value="dynamic-{{dynamicValue}}">
-												{{translate.dynamicTitle}}
-											</md-radio-button>
-										</md-radio-group>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-xs-12 col-md-6 title" data-ng-show="other.value">
-										{{translate.quantityTitle}}
-									</div>
-
-									<div class="col-xs-12 col-md-6" data-ng-show="other.value">
-										<md-radio-group class="md-primary" data-ng-model="other.quantity">
-											<md-radio-button value="1">1</md-radio-button>
-											<md-radio-button value="2">2</md-radio-button>
-											<md-radio-button value="3">3</md-radio-button>
-											<md-radio-button value="4">4</md-radio-button>
-											<md-radio-button value="5">5</md-radio-button>
 										</md-radio-group>
 									</div>
 								</div>
@@ -266,17 +233,19 @@
 				</md-tab>
 			</md-tabs>
 
-			<md-content>
+			<md-content data-ng-show="values.sizedCompany">
 				<div class="col-xs-6">
 					<div class="row">
 						<md-input-container class="col-xs-12 col-md-6">
 							<input ng-model="user.name" required>
 							<label>{{translate.formName}}</label>
 						</md-input-container>
+
 						<md-input-container class="col-xs-12 col-md-6">
 							<input ng-model="user.email" type="email" required>
 							<label>{{translate.formEmail}}</label>
 						</md-input-container>
+
 						<md-input-container class="col-xs-12">
 							<md-button class="md-raised md-primary" ng-disabled="form.$invalid || loading" data-ng-click="submit()">
 								{{send}}

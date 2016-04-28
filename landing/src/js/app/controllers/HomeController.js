@@ -23,6 +23,8 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		$scope.totalHours = 0;
 		$scope.totalDays = 0;
 
+		$scope.pages = [];
+		$scope.newPage = {};
 		$scope.values = {};
 		$scope.other = {};
 		$scope.service = 'website';
@@ -56,7 +58,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 	init();
 
 	// Função disparada sempre que o objeto $scope.values e $scope.other sofrer alterações
-	$scope.$watch('[values, other]', function(newValues, oldValues, scope){
+	$scope.$watch('[values, pages]', function(newValues, oldValues, scope){
 		$scope.totalValue = 0;
 		$scope.totalHours = 0;
 		$scope.totalDays = 0;
@@ -76,7 +78,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		}
 
 		//verifica todos os valores e soma
-		angular.forEach($scope.values, function(value, key){
+		angular.forEach(newValues[0], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
 			if(value !== undefined && value.split('-').length > 1){
 				$scope.totalValue += parseFloat(value.split('-')[1]);
@@ -90,21 +92,19 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 				$scope.totalValue += parseFloat(value);
 		});
 
-		//verifica valores de outras paginas e soma
-		angular.forEach($scope.other, function(value, key){
-			$scope.other.quantity = $scope.other.quantity || 1;
-
+		//verifica todos os valores e soma
+		angular.forEach(newValues[1], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
-			if($scope.other.value.split('-').length > 1){
-				$scope.totalValue += parseFloat($scope.other.value.split('-')[1] * $scope.other.quantity);
+			if(value.type !== undefined && value.type.split('-').length > 1){
+				$scope.totalValue += parseFloat(value.type.split('-')[1]);
 
 				//calcula horas
-				if($scope.other.value.split('-')[0] == 'static')
-					$scope.totalHours += _hourStaticPage * $scope.other.quantity;
+				if(value.type.split('-')[0] == 'static')
+					$scope.totalHours += _hourStaticPage;
 				else
-					$scope.totalHours += _hourDynamicPage * $scope.other.quantity;
+					$scope.totalHours += _hourDynamicPage;
 			}else
-				$scope.totalValue += parseFloat($scope.other.value * $scope.other.quantity);
+				$scope.totalValue += parseFloat(value.type);
 		});
 
 		//aguarda carregamento
@@ -166,6 +166,24 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 	//altera idioma do site
 	$scope.changeLanguage = function(lang){
 		$rootScope.language = lang;
+	};
+
+	//insere novas paginas
+	$scope.insertNewPage = function(newPage){
+		if(newPage.title && newPage.description){
+			$scope.newPage = {};
+
+			newPage.type = (newPage.type === undefined || newPage.type == $rootScope.translate.staticTitle) ? 'static-' + $scope.staticValue : 'dynamic-' + $scope.dynamicValue;
+
+			$scope.pages.push(newPage);
+		}else{
+			$mdToast.show(
+				$mdToast.simple()
+					.textContent('Necessário preencher os campos NOME e DESCRIÇÃO.')
+					.position('top left')
+					.hideDelay(3000)
+			);
+		}
 	};
 
 	//envia formulario

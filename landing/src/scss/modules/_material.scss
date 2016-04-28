@@ -7,6 +7,11 @@
   margin-left: 0;
 }
 
+.md-toast-animating{
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+}
+
 md-checkbox{
   margin: 5px auto;
 }
@@ -21,6 +26,15 @@ md-checkbox:first-child{
 
 md-switch{
   margin: 0;
+}
+
+fieldset#newPage{
+  md-switch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
 }
 
 md-tabs{
@@ -41,7 +55,7 @@ md-content{
     button{
       margin: 0 !important;
     }
-    input ~ label{
+    input ~ label, textarea ~ label{
       left: 12px !important;
     }
   }
