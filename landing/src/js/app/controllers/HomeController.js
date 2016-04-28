@@ -66,6 +66,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		//reseta variaveis se for selecionado um novo tipo de empresa
 		if(newValues[0].sizedCompany != oldValues[0].sizedCompany){
 			var _businessValue = $scope.values.sizedCompany;
+			$scope.pages = [];
 			$scope.other = {};
 			$scope.values = {};
 			$scope.typeSite = {};
@@ -130,6 +131,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 
 		//se o tipo de site for template, soma com valor estatico
 		if(newValue == 'template'){
+			$scope.pages = [];
 			$scope.other = {};
 			$scope.values = {};
 			$scope.values.sizedCompany = _businessValue;
@@ -148,6 +150,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 
 	//reseta variaveis e seleciona servico
 	$scope.selectService = function(service){
+		$scope.pages = [];
 		$scope.values = {};
 		$scope.other = {};
 		$scope.service = service;
