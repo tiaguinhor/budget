@@ -1,8 +1,7 @@
 # Virtual Budget
 
 ##Demo && Freelancer
-(http://budget.ogaiti.com.br)
-Test the online application and already enjoy to make a budget ;)
+http://budget.ogaiti.com.br Test the online application and already enjoy to make a budget ;)
 
 ## Install/Deploy
 
@@ -39,14 +38,14 @@ this command will cause the project to be minified and processed in real time, m
 3 - In the 'application' folder of the project, is the app that is being developed with Ionic2 and AngularJS2.
 
 
-
+=================
 ## *PORTUGUÊS
+=================
 
 #Orçamento Virtual
 
 ##Demo && Freelancer
-(http://budget.ogaiti.com.br)
-Teste a aplicação online e já aproveite para fazer um orçamento ;)
+http://budget.ogaiti.com.br Teste a aplicação online e já aproveite para fazer um orçamento ;)
 
 ##Instalação/Deploy
 
