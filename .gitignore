@@ -1,6 +1,7 @@
 .idea/
 components/
 node_modules/
+dist/
 
 */config/development
 */logs/log-*.php

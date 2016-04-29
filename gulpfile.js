@@ -12,7 +12,7 @@ var path = require('path'),
 	browserSync = require('browser-sync'),
 	watch = require('gulp-watch'),
 	changed = require('gulp-changed'),
-	directoryProject = 'budget/landing/dist/';
+	directoryProject = 'budget/dist/';
 
 gulp.task('html', function(){
 	// move html to different platforms
