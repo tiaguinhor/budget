@@ -1,6 +1,10 @@
 .idea/
+components/
 node_modules/
-www/build/
-platforms/
-plugins/
-.DS_Store
+
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+*/cache/!.htaccess
