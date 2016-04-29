@@ -26,7 +26,6 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		$scope.pages = [];
 		$scope.newPage = {};
 		$scope.values = {};
-		$scope.other = {};
 		$scope.service = 'website';
 
 		$scope.staticValue = parseFloat(_hourValue * _hourStaticPage);
@@ -57,7 +56,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 	// fire on controller loaded
 	init();
 
-	// Função disparada sempre que o objeto $scope.values e $scope.other sofrer alterações
+	// Função disparada sempre que o objeto $scope.values e $scope.pages sofrer alterações
 	$scope.$watch('[values, pages]', function(newValues, oldValues, scope){
 		$scope.totalValue = 0;
 		$scope.totalHours = 0;
@@ -67,7 +66,6 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		if(newValues[0].sizedCompany != oldValues[0].sizedCompany){
 			var _businessValue = $scope.values.sizedCompany;
 			$scope.pages = [];
-			$scope.other = {};
 			$scope.values = {};
 			$scope.typeSite = {};
 			$scope.values.sizedCompany = _businessValue;
@@ -132,7 +130,6 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		//se o tipo de site for template, soma com valor estatico
 		if(newValue == 'template'){
 			$scope.pages = [];
-			$scope.other = {};
 			$scope.values = {};
 			$scope.values.sizedCompany = _businessValue;
 
@@ -152,7 +149,6 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 	$scope.selectService = function(service){
 		$scope.pages = [];
 		$scope.values = {};
-		$scope.other = {};
 		$scope.service = service;
 
 		//fix set value to 0
@@ -195,7 +191,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			$scope.loading = true;
 			$scope.send = $rootScope.translate.sendingButton;
 
-			sendEmail.get($scope.totalValue, $scope.totalDays, $scope.values, $scope.other, $scope.user, $scope.user.email).success(function(callback){
+			sendEmail.get($scope.totalValue, $scope.totalDays, $scope.values, $scope.pages, $scope.user, $scope.user.email).success(function(callback){
 				delete $scope.user;
 				$scope.loading = false;
 				$scope.form.$setPristine();

@@ -12,9 +12,9 @@ foreach(json_decode($_GET['values']) as $value){
     $texto .= $value.PHP_EOL;
 }
 
-$texto .= PHP_EOL.'Other: '.PHP_EOL;
-foreach(json_decode($_GET['other']) as $another){
-    $texto .= $another.PHP_EOL;
+$texto .= PHP_EOL.'Pages: '.PHP_EOL;
+foreach(json_decode($_GET['pages']) as $page){
+    $texto .= $page.PHP_EOL;
 }
 
 $texto .= PHP_EOL.'User: '.PHP_EOL;

@@ -22,6 +22,7 @@ app.run(function($rootScope, $cookies){
 				"pageDescriptionTitle": "Descreva a Página",
 				"applicationTitle": "Aplicativos",
 				"typeCompanyTitle": "Tipo de Empresa",
+				"typeCompanyDescription": "Defina o porte de sua empresa",
 				"typeSiteTitle": "Tipo de Site",
 				"templateTitle": "Criar site utilizando template",
 				"customTitle": "Criar site personalizado",

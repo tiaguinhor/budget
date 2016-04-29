@@ -89,3 +89,14 @@ md-tabs md-ink-bar{
     }
   }
 }
+
+@media(max-width: 600px) {
+  fieldset#newPage{
+    md-switch{
+      justify-content: flex-start;
+      padding-left: 30px;
+      height: 50px;
+      margin-bottom: 20px;
+    }
+  }
+}

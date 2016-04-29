@@ -16,6 +16,7 @@ app.run(function($rootScope){
 				"pageDescriptionTitle": "Describe Page",
 				"applicationTitle": "Applications",
 				"typeCompanyTitle": "Type of Company",
+				"typeCompanyDescription": "Sets the size of your business",
 				"typeSiteTitle": "Type of Site",
 				"templateTitle": "Create website using template",
 				"customTitle": "Create custom site",

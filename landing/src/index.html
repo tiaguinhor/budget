@@ -86,7 +86,11 @@
 					<md-content class="md-padding">
 						<div data-ng-show="service == 'website'">
 							<div class="row">
-								<div class="col-xs-12 col-md-6 title">{{translate.typeCompanyTitle}}</div>
+								<div class="col-xs-12 col-md-6 title">
+									<abbr title="{{translate.typeCompanyDescription}}" class="initialism">
+										{{translate.typeCompanyTitle}}
+									</abbr>
+								</div>
 
 								<div class="col-xs-12 col-md-6">
 									<md-radio-group class="md-primary" data-ng-model="values.sizedCompany">
@@ -115,21 +119,21 @@
 									<legend>Insira a nova página</legend>
 
 									<div class="row">
-										<md-input-container class="col-md-4">
+										<md-input-container class="col-sm-4">
 											<input ng-model="newPage.title">
 											<label>{{translate.pageNameTitle}}</label>
 										</md-input-container>
 
-										<md-input-container class="col-md-4">
+										<md-input-container class="col-sm-4">
 											<textarea ng-model="newPage.description" md-maxlength="300" md-select-on-focus></textarea>
 											<label>{{translate.pageDescriptionTitle}}</label>
 										</md-input-container>
 
-										<md-switch class="col-md-3 md-primary" data-ng-model="newPage.type" data-ng-true-value="'{{translate.dynamicTitle}}'" data-ng-false-value="'{{translate.staticTitle}}'">
+										<md-switch class="col-sm-3 md-primary" data-ng-model="newPage.type" data-ng-true-value="'{{translate.dynamicTitle}}'" data-ng-false-value="'{{translate.staticTitle}}'">
 											{{newPage.type || translate.staticTitle}}
 										</md-switch>
 
-										<md-input-container class="col-md-1">
+										<md-input-container class="col-sm-1">
 											<md-button class="md-fab md-primary md-mini" data-ng-click="insertNewPage(newPage)">
 												<i class="fa fa-plus"></i>
 											</md-button>
@@ -253,6 +257,7 @@
 						</md-input-container>
 					</div>
 				</div>
+
 				<div class="col-xs-6">
 					<md-input-container class="md-block">
 						<textarea ng-model="user.description" md-maxlength="300" md-select-on-focus required></textarea>
