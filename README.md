@@ -36,9 +36,7 @@ this command will cause the project to be minified and processed in real time, m
 
 
 
-##================================================================
 ##PORTUGUÊS
-##================================================================
 
 #Orçamento Virtual
 
