@@ -43,6 +43,9 @@ md-tabs{
 
 md-toast{
   position: fixed;
+  &.md-top{
+    top: 65px;
+  }
 }
 
 md-toolbar{

@@ -72,29 +72,29 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 
 			//aguarda carregamento
 			$timeout(function(){
-				$scope.totalValue += parseFloat(_businessValue);
+				$scope.totalValue += parseFloat(_businessValue.split('-')[1]);
+				console.log($scope.totalValue);
 			}, 0);
 		}
 
 		//verifica todos os valores e soma
 		angular.forEach(newValues[0], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
-			if(value !== undefined && value.split('-').length > 1){
+			if(value !== undefined){
 				$scope.totalValue += parseFloat(value.split('-')[1]);
 
 				//calcula horas
 				if(value.split('-')[0] == 'static')
 					$scope.totalHours += _hourStaticPage;
-				else
+				else if(value.split('-')[0] == 'dynamic')
 					$scope.totalHours += _hourDynamicPage;
-			}else
-				$scope.totalValue += parseFloat(value);
+			}
 		});
 
 		//verifica todos os valores e soma
 		angular.forEach(newValues[1], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
-			if(value.type !== undefined && value.type.split('-').length > 1){
+			if(value.type !== undefined){
 				$scope.totalValue += parseFloat(value.type.split('-')[1]);
 
 				//calcula horas
@@ -102,14 +102,13 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 					$scope.totalHours += _hourStaticPage;
 				else
 					$scope.totalHours += _hourDynamicPage;
-			}else
-				$scope.totalValue += parseFloat(value.type);
+			}
 		});
 
 		//aguarda carregamento
 		$timeout(function(){
 			//verifica se responsivo esta selecionado
-			if(newValues[0].mobile && newValues[0].mobile != 0)
+			if(newValues[0].responsive && newValues[0].responsive != 0)
 				$scope.totalHours += _hourResponsive;
 
 			$scope.totalDays = $scope.totalHours / _hourWorkPerDay;
@@ -136,13 +135,13 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			//aguarda carregamento
 			$timeout(function(){
 				$scope.totalDays = 3;
-				$scope.totalValue = parseFloat(_businessValue) + parseFloat(_templateValue);
+				$scope.totalValue = parseFloat(_businessValue.split('-')[1]) + parseFloat(_templateValue);
 			}, 0);
 		}
 
 		//se pagina personalizada, soma somente o tipo de empresa
 		if(newValue == 'custom')
-			$scope.totalValue = parseFloat(_businessValue);
+			$scope.totalValue = parseFloat(_businessValue.split('-')[1]);
 	});
 
 	//reseta variaveis e seleciona servico
@@ -180,7 +179,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 				$mdToast.simple()
 					.textContent('Necessário preencher os campos NOME e DESCRIÇÃO.')
 					.position('top left')
-					.hideDelay(3000)
+					.hideDelay(5000)
 			);
 		}
 	};
@@ -202,7 +201,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 					$mdToast.simple()
 						.textContent(callback)
 						.position('top left')
-						.hideDelay(3000)
+						.hideDelay(5000)
 				);
 			}).error(function(){
 				$scope.loading = false;
@@ -213,7 +212,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 				$mdToast.simple()
 					.textContent('Por favor, preencha os campos de envio.')
 					.position('top left')
-					.hideDelay(3000)
+					.hideDelay(5000)
 			);
 		}
 	}

@@ -94,7 +94,7 @@
 
 								<div class="col-xs-12 col-md-6">
 									<md-radio-group class="md-primary" data-ng-model="values.sizedCompany">
-										<md-radio-button data-ng-repeat="company in translate.business" value="{{company.value}}">
+										<md-radio-button data-ng-repeat="company in translate.business" value="{{company.sized}}-{{company.value}}">
 											{{company.sized}}
 										</md-radio-button>
 									</md-radio-group>
@@ -116,7 +116,7 @@
 
 							<div data-ng-show="typeSite == 'custom'">
 								<fieldset id="newPage">
-									<legend>Insira a nova página</legend>
+									<legend>{{translate.newPageTitle}}</legend>
 
 									<div class="row">
 										<md-input-container class="col-sm-4">
@@ -173,7 +173,7 @@
 								</div>
 
 								<div class="col-xs-12 col-md-6">
-									<md-switch class="md-primary" data-ng-model="values.mobile" data-ng-true-value="'{{responsiveValue}}'" data-ng-false-value="'0'"></md-switch>
+									<md-switch class="md-primary" data-ng-model="values.responsive" data-ng-true-value="'responsive-{{responsiveValue}}'" data-ng-false-value="'0'"></md-switch>
 								</div>
 							</div>
 
@@ -183,7 +183,7 @@
 								</div>
 
 								<div class="col-xs-12 col-md-6">
-									<md-switch class="md-primary" data-ng-model="values.mvc" data-ng-true-value="'{{mvcValue}}'" data-ng-false-value="'0'"></md-switch>
+									<md-switch class="md-primary" data-ng-model="values.mvc" data-ng-true-value="'mvc-{{mvcValue}}'" data-ng-false-value="'0'"></md-switch>
 								</div>
 							</div>
 
@@ -191,7 +191,7 @@
 								<div class="col-xs-12 col-md-6">{{translate.domainTitle}}</div>
 
 								<div class="col-xs-12 col-md-6">
-									<md-switch class="md-primary" data-ng-model="values.domain" data-ng-true-value="'{{domainValue}}'" data-ng-false-value="'0'"></md-switch>
+									<md-switch class="md-primary" data-ng-model="values.domain" data-ng-true-value="'domain-{{domainValue}}'" data-ng-false-value="'0'"></md-switch>
 								</div>
 							</div>
 
@@ -199,7 +199,7 @@
 								<div class="col-xs-12 col-md-6">{{translate.maintenanceTitle}}</div>
 
 								<div class="col-xs-12 col-md-6">
-									<md-switch class="md-primary" data-ng-model="values.maintenance" data-ng-true-value="'{{maintenanceValue}}'" data-ng-false-value="'0'"></md-switch>
+									<md-switch class="md-primary" data-ng-model="values.maintenance" data-ng-true-value="'maintenance-{{maintenanceValue}}'" data-ng-false-value="'0'"></md-switch>
 								</div>
 							</div>
 
@@ -213,7 +213,7 @@
 						<div data-ng-show="service == 'app'">
 							<div class="col-xs-12">
 								<md-radio-group class="md-primary" data-ng-model="values.application">
-									<md-radio-button data-ng-repeat="application in translate.applications" value="{{application.value}}">
+									<md-radio-button data-ng-repeat="application in translate.applications" value="{{application.name}}-{{application.value}}">
 										{{application.name}}
 									</md-radio-button>
 								</md-radio-group>
@@ -227,7 +227,7 @@
 						<div data-ng-show="service == 'game'">
 							<div class="col-xs-12">
 								<md-radio-group class="md-primary" data-ng-model="values.game">
-									<md-radio-button data-ng-repeat="game in translate.games" value="{{game.value}}">
+									<md-radio-button data-ng-repeat="game in translate.games" value="{{game.type}}-{{game.value}}">
 										{{game.type}}
 									</md-radio-button>
 								</md-radio-group>
@@ -237,33 +237,39 @@
 				</md-tab>
 			</md-tabs>
 
-			<md-content data-ng-show="values.sizedCompany">
-				<div class="col-xs-6">
+			<md-content data-ng-show="values.sizedCompany" class="col-xs-12">
+				<fieldset>
+					<legend>{{translate.formTitle}}</legend>
+
 					<div class="row">
-						<md-input-container class="col-xs-12 col-md-6">
-							<input ng-model="user.name" required>
-							<label>{{translate.formName}}</label>
-						</md-input-container>
+						<div class="col-xs-6">
+							<div class="row">
+								<md-input-container class="col-xs-12 col-md-6">
+									<input ng-model="user.name" required>
+									<label>{{translate.formName}}</label>
+								</md-input-container>
 
-						<md-input-container class="col-xs-12 col-md-6">
-							<input ng-model="user.email" type="email" required>
-							<label>{{translate.formEmail}}</label>
-						</md-input-container>
+								<md-input-container class="col-xs-12 col-md-6">
+									<input ng-model="user.email" type="email" required>
+									<label>{{translate.formEmail}}</label>
+								</md-input-container>
 
-						<md-input-container class="col-xs-12">
-							<md-button class="md-raised md-primary" ng-disabled="form.$invalid || loading" data-ng-click="submit()">
-								{{send}}
-							</md-button>
-						</md-input-container>
+								<md-input-container class="col-xs-12">
+									<md-button class="md-raised md-primary" ng-disabled="form.$invalid || loading" data-ng-click="submit()">
+										{{send}}
+									</md-button>
+								</md-input-container>
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<md-input-container class="md-block">
+								<textarea ng-model="user.description" md-maxlength="300" md-select-on-focus required></textarea>
+								<label>{{translate.formDescription}}</label>
+							</md-input-container>
+						</div>
 					</div>
-				</div>
-
-				<div class="col-xs-6">
-					<md-input-container class="md-block">
-						<textarea ng-model="user.description" md-maxlength="300" md-select-on-focus required></textarea>
-						<label>{{translate.formDescription}}</label>
-					</md-input-container>
-				</div>
+				</fieldset>
 			</md-content>
 		</form>
 	</section>
