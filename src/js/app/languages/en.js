@@ -46,6 +46,10 @@ app.run(function($rootScope){
 				"errorCallback": "Something went wrong, try again later or contact me directly by email <strong>tiaguinhor [at] gmail [.] com</strong>... Thank you!",
 				"business": [
 					{
+						"sized": "Personal",
+						"value": 0
+					},
+					{
 						"sized": "SP",
 						"value": 0
 					},

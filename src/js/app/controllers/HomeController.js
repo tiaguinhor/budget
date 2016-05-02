@@ -57,7 +57,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 	init();
 
 	// Função disparada sempre que o objeto $scope.values e $scope.pages sofrer alterações
-	$scope.$watch('[values, pages]', function(newValues, oldValues, scope){
+	$scope.$watch('[values, pages, extras]', function(newValues, oldValues, scope){
 		$scope.totalValue = 0;
 		$scope.totalHours = 0;
 		$scope.totalDays = 0;
@@ -77,7 +77,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}, 0);
 		}
 
-		//verifica todos os valores e soma
+		//verifica todos os valores de values e soma
 		angular.forEach(newValues[0], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
 			if(value !== undefined){
@@ -91,7 +91,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}
 		});
 
-		//verifica todos os valores e soma
+		//verifica todos os valores de pages e soma
 		angular.forEach(newValues[1], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
 			if(value.type !== undefined){
@@ -105,12 +105,20 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}
 		});
 
+		//verifica todos os valores de extra e soma
+		angular.forEach(newValues[2], function(value, key){
+			//desmonta valor e verifica se é estatico ou dinamico
+			if(value !== undefined){
+				$scope.totalValue += parseFloat(value);
+
+				//verifica se responsivo esta selecionado e calcula horas
+				if(value.responsive != 0)
+					$scope.totalHours += _hourResponsive;
+			}
+		});
+
 		//aguarda carregamento
 		$timeout(function(){
-			//verifica se responsivo esta selecionado
-			if(newValues[0].responsive && newValues[0].responsive != 0)
-				$scope.totalHours += _hourResponsive;
-
 			$scope.totalDays = $scope.totalHours / _hourWorkPerDay;
 
 			if(newValues[0].application)
