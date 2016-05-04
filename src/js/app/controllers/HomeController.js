@@ -48,16 +48,16 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		];
 	};
 
-	// fire on controller loaded
+	//fire on controller loaded
 	init();
 
-	// Função disparada sempre que o objeto $scope.values e $scope.pages sofrer alterações
+	//function always fires the object $scope.values and $scope.pages and $scope.extras undergo changes
 	$scope.$watch('[values, pages, extras]', function(newValues, oldValues, scope){
 		$scope.totalValue = 0;
 		$scope.totalHours = 0;
 		$scope.totalDays = 0;
 
-		//reseta variaveis se for selecionado um novo tipo de empresa
+		//reset variables if you select a new type of company
 		if(newValues[0].sizedCompany != oldValues[0].sizedCompany){
 			var _businessValue = $scope.values.sizedCompany;
 			$scope.pages = [];
@@ -65,20 +65,19 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			$scope.typeSite = {};
 			$scope.values.sizedCompany = _businessValue;
 
-			//aguarda carregamento
+			//wait loading
 			$timeout(function(){
 				$scope.totalValue += parseFloat(_businessValue.split('-')[1]);
-				console.log($scope.totalValue);
 			}, 0);
 		}
 
-		//verifica todos os valores de VALUES e soma
+		//checks all VALUES values and sum
 		angular.forEach(newValues[0], function(value, key){
-			//desmonta valor e verifica se é estatico ou dinamico
+			//disassemble value and check whether it is static or dynamic
 			if(value !== undefined){
 				$scope.totalValue += parseFloat(value.split('-')[1]);
 
-				//calcula horas
+				//calculates hours
 				if(value.split('-')[0] == 'static')
 					$scope.totalHours += _hourStaticPage;
 				else if(value.split('-')[0] == 'dynamic')
@@ -86,13 +85,13 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}
 		});
 
-		//verifica todos os valores de PAGES e soma
+		//checks all PAGES values and sum
 		angular.forEach(newValues[1], function(value, key){
-			//desmonta valor e verifica se é estatico ou dinamico
+			//disassemble value and check whether it is static or dynamic
 			if(value.type !== undefined){
 				$scope.totalValue += parseFloat(value.type.split('-')[1]);
 
-				//calcula horas
+				//calculates hours
 				if(value.type.split('-')[0] == 'static')
 					$scope.totalHours += _hourStaticPage;
 				else
@@ -100,22 +99,22 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}
 		});
 
-		//verifica todos os valores de EXTRAS e soma
+		//checks all EXTRAS values and sum
 		angular.forEach(newValues[2], function(value, key){
-			//desmonta valor e verifica se é estatico ou dinamico
+			//disassemble value and check whether it is static or dynamic
 			if(value !== undefined){
 				if(value.split('-').length > 1)
 					$scope.totalValue += parseFloat(value.split('-')[1]);
 				else
 					$scope.totalValue += parseFloat(value);
 
-				//verifica se responsivo esta selecionado e calcula horas
+				//is selected responsive checks and calculates hours
 				if(newValues[2].responsive != 0)
 					$scope.totalHours += _hourResponsive;
 			}
 		});
 
-		//aguarda carregamento
+		//wait loading
 		$timeout(function(){
 			$scope.totalDays = $scope.totalHours / _hourWorkPerDay;
 
@@ -126,31 +125,31 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		}, 0)
 	}, true);
 
-	//verifica o tipo de site e realiza as somas
+	//checks the type of site and do the sums
 	$scope.$watch('typeSite', function(newValue){
 		var _businessValue = $scope.values.sizedCompany;
 		$scope.totalDays = 0;
 		$scope.totalValue = 0;
 
-		//se o tipo de site for template, soma com valor estatico
+		//if the type of site is template
 		if(newValue == 'template'){
 			$scope.pages = [];
 			$scope.values = {};
 			$scope.values.sizedCompany = _businessValue;
 
-			//aguarda carregamento
+			//wait loading
 			$timeout(function(){
 				$scope.totalDays = 3;
 				$scope.totalValue = parseFloat(_businessValue.split('-')[1]) + parseFloat(_templateValue);
 			}, 0);
 		}
 
-		//se pagina personalizada, soma somente o tipo de empresa
+		//if custom page, only adds the type of company
 		if(newValue == 'custom')
 			$scope.totalValue = parseFloat(_businessValue.split('-')[1]);
 	});
 
-	//reseta variaveis e seleciona servico
+	//reset variables and selects service
 	$scope.selectService = function(service){
 		$scope.pages = [];
 		$scope.values = {};
@@ -162,17 +161,17 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		}, 100);
 	};
 
-	//fecha popup
+	//close popup
 	$scope.closePopup = function(){
 		$scope.close = true;
 	};
 
-	//altera idioma do site
+	//change language site
 	$scope.changeLanguage = function(lang){
 		$rootScope.language = lang;
 	};
 
-	//insere novas paginas
+	//insert new pages
 	$scope.insertNewPage = function(newPage){
 		if(newPage.title && newPage.description){
 			$scope.newPage = {};
@@ -190,13 +189,13 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		}
 	};
 
-	//remove pagina
+	//remove pages
 	$scope.removeNewPage = function(page){
 		var position = $scope.pages.indexOf(page);
 		$scope.pages.splice(position, 1);
 	};
 
-	//envia formulario
+	//send budget
 	$scope.submit = function(){
 		if($scope.user){
 			var _sendButtonText = $rootScope.translate.sendButton;
