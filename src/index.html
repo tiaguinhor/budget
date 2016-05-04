@@ -120,17 +120,17 @@
 
 									<div class="row">
 										<md-input-container class="col-sm-4">
-											<input ng-model="newPage.title">
+											<input ng-model="newPage.title" placeholder="{{translate.placeholderNewPageTitle}}">
 											<label>{{translate.pageNameTitle}}</label>
 										</md-input-container>
 
 										<md-input-container class="col-sm-4">
-											<textarea ng-model="newPage.description" md-maxlength="300" md-select-on-focus></textarea>
+											<textarea ng-model="newPage.description" placeholder="{{translate.placeholderNewPageDescription}}" md-maxlength="300" md-select-on-focus></textarea>
 											<label>{{translate.pageDescriptionTitle}}</label>
 										</md-input-container>
 
 										<md-switch class="col-sm-3 md-primary" data-ng-model="newPage.type" data-ng-true-value="'{{translate.dynamicTitle}}'" data-ng-false-value="'{{translate.staticTitle}}'">
-											{{newPage.type || translate.staticTitle}}
+											<abbr title="{{translate.placeholderNewPageType}}" class="initialism">{{newPage.type || translate.staticTitle}}</abbr>
 										</md-switch>
 
 										<md-input-container class="col-sm-1">
@@ -141,10 +141,13 @@
 									</div>
 								</fieldset>
 
-								<div class="row" data-ng-repeat="page in pages">
+								<div class="row pages" data-ng-repeat="page in pages">
 									<hr data-ng-if="$first">
 
 									<div class="col-xs-12 col-md-6 title">
+										<i class="fa fa-times fa-lg" data-ng-click="removeNewPage(page)">
+											<md-tooltip md-direction="top">{{translate.removePage}}</md-tooltip>
+										</i>
 										<abbr title="{{page.description}}" class="initialism">{{page.title}}</abbr>
 									</div>
 
@@ -256,7 +259,7 @@
 
 								<md-input-container class="col-xs-12">
 									<md-button class="md-raised md-primary" ng-disabled="form.$invalid || loading" data-ng-click="submit()">
-										{{send}}
+										{{translate.sendButton}}
 									</md-button>
 								</md-input-container>
 							</div>

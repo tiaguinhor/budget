@@ -46,11 +46,6 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 				"title": "English"
 			}
 		];
-
-		//aguarda carregamento
-		$timeout(function(){
-			$scope.send = $rootScope.translate.sendButton;
-		}, 0);
 	};
 
 	// fire on controller loaded
@@ -77,7 +72,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}, 0);
 		}
 
-		//verifica todos os valores de values e soma
+		//verifica todos os valores de VALUES e soma
 		angular.forEach(newValues[0], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
 			if(value !== undefined){
@@ -91,7 +86,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}
 		});
 
-		//verifica todos os valores de pages e soma
+		//verifica todos os valores de PAGES e soma
 		angular.forEach(newValues[1], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
 			if(value.type !== undefined){
@@ -105,14 +100,17 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			}
 		});
 
-		//verifica todos os valores de extra e soma
+		//verifica todos os valores de EXTRAS e soma
 		angular.forEach(newValues[2], function(value, key){
 			//desmonta valor e verifica se é estatico ou dinamico
 			if(value !== undefined){
-				$scope.totalValue += parseFloat(value);
+				if(value.split('-').length > 1)
+					$scope.totalValue += parseFloat(value.split('-')[1]);
+				else
+					$scope.totalValue += parseFloat(value);
 
 				//verifica se responsivo esta selecionado e calcula horas
-				if(value.responsive != 0)
+				if(newValues[2].responsive != 0)
 					$scope.totalHours += _hourResponsive;
 			}
 		});
@@ -192,18 +190,25 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 		}
 	};
 
+	//remove pagina
+	$scope.removeNewPage = function(page){
+		var position = $scope.pages.indexOf(page);
+		$scope.pages.splice(position, 1);
+	};
+
 	//envia formulario
 	$scope.submit = function(){
 		if($scope.user){
+			var _sendButtonText = $rootScope.translate.sendButton;
 			$scope.loading = true;
-			$scope.send = $rootScope.translate.sendingButton;
+			$rootScope.translate.sendButton = $rootScope.translate.sendingButton;
 
 			sendEmail.get($scope.totalValue, $scope.totalDays, $scope.values, $scope.pages, $scope.user, $scope.user.email).success(function(callback){
 				delete $scope.user;
 				$scope.loading = false;
 				$scope.form.$setPristine();
 				$scope.form.$setUntouched();
-				$scope.send = $rootScope.translate.sendButton;
+				$rootScope.translate.sendButton = _sendButtonText;
 
 				$mdToast.show(
 					$mdToast.simple()

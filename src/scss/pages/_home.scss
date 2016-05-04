@@ -28,6 +28,13 @@ body{
     font-weight: bolder;
     text-transform: uppercase;
   }
+  .pages{
+    .title{
+      i{
+        margin-right: 10px;
+      }
+    }
+  }
   #logo{
     float: left;
     background: url("#{$imgDirectory}logo_bw.png") no-repeat;
