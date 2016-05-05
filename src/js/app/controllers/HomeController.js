@@ -202,7 +202,7 @@ app.controller('HomeController', function($scope, $rootScope, $timeout, $mdToast
 			$scope.loading = true;
 			$rootScope.translate.sendButton = $rootScope.translate.sendingButton;
 
-			sendEmail.get($scope.totalValue, $scope.totalDays, $scope.values, $scope.pages, $scope.user, $scope.user.email).success(function(callback){
+			sendEmail.get($scope.totalValue, $scope.totalDays, $scope.values, $scope.pages, $scope.extras, $scope.user, $scope.user.email).success(function(callback){
 				delete $scope.user;
 				$scope.loading = false;
 				$scope.form.$setPristine();
